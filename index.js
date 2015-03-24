@@ -11,7 +11,7 @@ var server = http.createServer(function(req, res) {
 
 server.listen(1337, '127.0.0.1');
 
-new CronJob('* * * * * *', function() {
+new CronJob('0 30 10 * * *', function() {
   console.log("This job will run daily");
 
   request.get("http://api.thisismyjam.com/1/explore/popular.json", function(error, response, body) {
