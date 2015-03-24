@@ -1,0 +1,11 @@
+{
+  "name": "SongGetter",
+  "version": "1.0.0",
+  "description": "A node web server that has a cron job scheduled to make an api call to This Is My Jam daily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christina",
+  "license": "ISC"
+}
