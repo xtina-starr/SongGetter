@@ -9,3 +9,7 @@ var server = http.createServer(function(req, res) {
 
 server.listen(1337, '127.0.0.1');
 
+new CronJob('* * * * * *', function() {
+  console.log("This job will run daily");
+})
+
