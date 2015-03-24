@@ -2,16 +2,20 @@ var http = require('http'),
     CronJob = require('cron').CronJob,
     request = require('request'),
     _und = require('underscore'),
-    Firebase = require('firebase');
+    Firebase = require('firebase'),
+    firebaseUrl = require('./config.json').dbUrl;
+
+    console.log("testing " + firebaseUrl);
 
 var server = http.createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('okay');
 });
+console.log("server is started");
 
 server.listen(1337, '127.0.0.1');
 
-new CronJob('0 30 10 * * *', function() {
+new CronJob('0 5 16 * * *', function() {
   console.log("This job will run daily");
 
   request.get("http://api.thisismyjam.com/1/explore/popular.json", function(error, response, body) {
@@ -25,11 +29,13 @@ new CronJob('0 30 10 * * *', function() {
 
       console.log(sorted);
 
-      var ref = new Firebase();
+      var ref = new Firebase(firebaseUrl);
+
       var ts = new Date().toString();
 
       _und.each(sorted, function(item, i) {
         ref.push({
+          createdAt: ts,
           idOnJams: item.id,
           title: item.title,
           artist: item.artist,
@@ -39,8 +45,7 @@ new CronJob('0 30 10 * * *', function() {
           via: item.via,
           likes: item.likesCount,
           commentsCount: item.commentsCount,
-          rejamsCount: item.rejamsCount,
-          createdAt: ts
+          rejamsCount: item.rejamsCount
         }, function(error) {
           if(error) {
             console.log("There was an error: " + error);  
