@@ -15,7 +15,7 @@ console.log("server is started");
 
 server.listen(1337, '127.0.0.1');
 
-new CronJob('0 5 16 * * *', function() {
+new CronJob('0 30 20 * * *', function() {
   console.log("This job will run daily");
 
   request.get("http://api.thisismyjam.com/1/explore/popular.json", function(error, response, body) {
@@ -55,7 +55,6 @@ new CronJob('0 5 16 * * *', function() {
         });
 
       });
-      console.log("*************************");
     }
 
   });
