@@ -34,7 +34,7 @@ new CronJob('0 30 20 * * *', function() {
       var ts = new Date().toString();
 
       _und.each(sorted, function(item, i) {
-        ref.push({
+        var newJams = {
           createdAt: ts,
           idOnJams: item.id,
           title: item.title,
@@ -46,7 +46,9 @@ new CronJob('0 30 20 * * *', function() {
           likes: item.likesCount,
           commentsCount: item.commentsCount,
           rejamsCount: item.rejamsCount
-        }, function(error) {
+        }
+
+        ref.push(newJams, function(error) {
           if(error) {
             console.log("There was an error: " + error);  
           }else{
