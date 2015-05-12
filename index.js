@@ -2,10 +2,10 @@ var http = require('http'),
     CronJob = require('cron').CronJob,
     request = require('request'),
     _und = require('underscore'),
-    Firebase = require('firebase'),
-    firebaseUrl = require('./config.json').dbUrl;
+    Firebase = require('firebase');
+    // firebaseUrl = require('./config.json').dbUrl;
 
-    console.log("testing " + firebaseUrl);
+    // console.log("testing " + firebaseUrl);
 
 var server = http.createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
