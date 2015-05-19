@@ -22,7 +22,7 @@ function grabTopTwo(arr) {
 }
 
 function saveToFireBase(jams) {
-  var ref = new Firebase(firebaseUrl);
+  var ref = new Firebase("https://glaring-heat-1227.firebaseio.com/tracks");
   var ts = new Date().toString();
   _und.each(jams, function(item, i) {
     ref.push({
