@@ -2,18 +2,18 @@ var http = require('http'),
     CronJob = require('cron').CronJob,
     request = require('request'),
     _und = require('underscore'),
-    Firebase = require('firebase');
-    // firebaseUrl = require('./config.json').dbUrl;
+    Firebase = require('firebase'),
+    firebaseUrl = require('./config.json').dbUrl;
 
-    // console.log("testing " + firebaseUrl);
+    console.log("testing " + firebaseUrl);
 
 var server = http.createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
+  res.end('okay');
 });
 console.log("server is started");
 
-server.listen(1337, '127.0.0.1');
+server.listen(80, '127.0.0.1');
 
 function grabTopTwo(arr) {
   return _und.sortBy(arr, function(item, i) {
@@ -22,7 +22,7 @@ function grabTopTwo(arr) {
 }
 
 function saveToFireBase(jams) {
-  var ref = new Firebase("https://glaring-heat-1227.firebaseio.com/tracks");
+  var ref = new Firebase(firebaseUrl);
   var ts = new Date().toString();
   _und.each(jams, function(item, i) {
     ref.push({
