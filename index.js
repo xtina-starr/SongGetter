@@ -13,7 +13,7 @@ var server = http.createServer(function(req, res) {
 });
 console.log("server is started");
 
-server.listen(80, '127.0.0.1');
+server.listen(process.env.PORT, '127.0.0.1');
 
 function grabTopTwo(arr) {
   return _und.sortBy(arr, function(item, i) {
