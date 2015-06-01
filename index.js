@@ -13,7 +13,7 @@ var server = http.createServer(function(req, res) {
 });
 console.log("server is started");
 
-server.listen(process.env.PORT, '127.0.0.1');
+server.listen(process.env.PORT);
 
 function grabTopTwo(arr) {
   return _und.sortBy(arr, function(item, i) {
@@ -48,7 +48,7 @@ function saveToFireBase(jams) {
   });
 }
 
-new CronJob('0 30 20 * * *', function() {
+function getJamsJob() {
   console.log("This job will run daily");
 
   request.get("http://api.thisismyjam.com/1/explore/popular.json", function(error, response, body) {
@@ -59,10 +59,9 @@ new CronJob('0 30 20 * * *', function() {
       var topTwoJams = grabTopTwo(parsedResult);
       console.log(topTwoJams);
       saveToFireBase(topTwoJams);
-
     }
-
   });
+}
 
-}, null, true, "America/Los_Angeles");
+new CronJob('0 51 20 * * *', getJamsJob, null, true, "America/Los_Angeles");
 
