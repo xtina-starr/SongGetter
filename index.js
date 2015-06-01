@@ -5,7 +5,7 @@ var http = require('http'),
     Firebase = require('firebase');
     // firebaseUrl = require('./config.json').dbUrl;
 
-    console.log("testing " + firebaseUrl);
+    // console.log("testing " + firebaseUrl);
 
 var server = http.createServer(function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
